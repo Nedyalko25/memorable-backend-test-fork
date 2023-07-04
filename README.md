@@ -4,7 +4,7 @@ Thank you for applying to Memorable! The purpose of this test is to assess your 
 We are currently developing tools based on AI models to evaluate the cognitive impact of videos and images. These tools require an exceptional user experience to appeal to our clients. Our primary product is offered through a dashboard where users can upload their assets and analyze memorability and saliency metrics.
 
 ## Guidelines
-- You have access to a very reduced version of the production frontend repository. Clone it and follow the instructions in the README to get it up and running.
+- You have access to a very reduced version of the production backend repository. Fork it and follow the instructions in the README to get it up and running.
 - If the code at the end doesn't work, we could evaluate it. But it is better if it works.
 - Any question would be discussed in the code review meeting, the main part of the test is that conversation.
 - The test is not about finishing it, but about how you do it. If you don't finish it, we will discuss what you did and how you would finish it.
@@ -13,7 +13,7 @@ We are currently developing tools based on AI models to evaluate the cognitive i
 
 ### Objective && Deliverables
 - Your task is to implement a new endpoint to change the status of a brand. However, this operation should only be possible if the user making the request is an administrator (isAdmin is true), and has access to the brand in question.
-- We need to receive a PR with the code changes:
+- We need you to make a fork of this repository, and create a PR with the code changes:
     - The code must be in a new branch and pointing to dev branch
     - The change must include the new endpoint and the logic to change the status of the brand
     - A modification in the thunder client configuration (using the thunder client extension ui) with the test of the new endpoint
