@@ -54,8 +54,10 @@ export class BrandService extends BaseService {
         return result;
     }
 
-    async updateBrandStatus(brandId: string, status: BrandStatus) {
+    async updateBrandStatus(user: User, brandId: string, status: BrandStatus) {
         this.logger.verbose(this.updateBrandStatus.name, `Updating brand status`, {brandId, status});
+        this.validateUserAdmin(user, this.updateBrandStatus.name);
+
         let brand = await this.brandRepository.getById(brandId);
         if (!brand) {
             throw new NotFoundError(ErrorMsg.BRAND_NOT_FOUND, this.logger, this.updateBrandStatus.name);

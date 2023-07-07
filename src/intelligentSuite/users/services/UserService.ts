@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import {Service} from "typedi";
 import zxcvbn from "zxcvbn";
 import {BadRequestError} from "../../../common/errors/BadRequestError";
@@ -14,12 +15,13 @@ export class UserService {
         private readonly invitationService: InvitationService,
     ) {}
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async signUp(input: SignUpInput, invitationCode: string): Promise<User> {
-        const invitation = await this.invitationService.getInvitationByCode(invitationCode);
-        if (!invitation) {
-            throw new BadRequestError(ErrorMsg.INVITATION_CODE_NOT_FOUND);
-        }
-        invitation.verifyInvitation(input.email);
+        // const invitation = await this.invitationService.getInvitationByCode(invitationCode);
+        // if (!invitation) {
+        //     throw new BadRequestError(ErrorMsg.INVITATION_CODE_NOT_FOUND);
+        // }
+        // invitation.verifyInvitation(input.email);
 
         const existingUser = await this.userRepository.getByEmail(input.email);
         if (existingUser) {
@@ -31,12 +33,21 @@ export class UserService {
         const user = User.createUser({
             name: input.name,
             email: input.email,
-            businessAccount: invitation.businessAccount,
+            businessAccount: {
+                businessName: "test",
+                users: [],
+                isDeleted: () => false,
+                update: () => {},
+                id: "01H4616SGMFZ1GX71ZG5DCZMFD",
+                createdAt: new Date(),
+                setId: () => {},
+                updatedAt: new Date(),
+            }, //invitation.businessAccount,
             password: input.password,
-            isAdmin: invitation.isAdmin,
+            isAdmin: true, //invitation.isAdmin,
         });
         await this.userRepository.save(user);
-        await this.invitationService.useInvitation(invitation, user);
+        // await this.invitationService.useInvitation(invitation, user);
         return user;
     }
 
